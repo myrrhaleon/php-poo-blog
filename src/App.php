@@ -5,6 +5,7 @@ class App
     static public function start(): void
     {
         $page = 'list';
+        
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
         }
