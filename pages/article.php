@@ -1,0 +1,1 @@
+<h1>Page d'un article</h1>
