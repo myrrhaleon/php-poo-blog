@@ -1,9 +1,4 @@
 <?php require __DIR__ . '/partials/themeStart.php'; 
-
-//Ici
-
-
-
 ?>
 
 <h1>Page de création d'un article</h1>
