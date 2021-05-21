@@ -13,6 +13,7 @@ class App
         // nous permet de récupérer / créer des articles.
         $articleTable = new ArticleTable($pdo);
 
+        $page = new Page();
         // $articleTable->findAll();
         // $articleTable->findOne($_GET['id']);
         // $articleTable->createOne()
@@ -31,10 +32,10 @@ class App
         $controllerClassName = 'Controller\\' . ucfirst($pageName) . 'Controller';
 
         if (file_exists(__DIR__ . '/' . str_replace('\\', '/', $controllerClassName) . '.php')){
-            $controller = new $controllerClassName($articleTable);
+            $controller = new $controllerClassName($articleTable, $page);
             $controller->display();
         } else {
-            $controller = new Controller\NotFoundController($articleTable);
+            $controller = new Controller\NotFoundController($articleTable, $page);
 
             $controller->display();
         }
