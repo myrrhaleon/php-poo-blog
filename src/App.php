@@ -28,21 +28,15 @@ class App
             $pageName = $_GET['page'];
         }
     
-        $pagePath = __DIR__ . '/../pages/' . $pageName . '.php';
+        $controllerClassName = 'Controller\\' . ucfirst($pageName) . 'Controller';
 
-        ob_start();
-
-        if (file_exists($pagePath)){
-            try {
-                require $pagePath;
-            } catch (Exception $exception) {
-                ob_clean();
-                require __DIR__ . '/../pages/notFound.php';
-            }
+        if (file_exists(__DIR__ . '/' . str_replace('\\', '/', $controllerClassName) . '.php')){
+            $controller = new $controllerClassName($articleTable);
+            $controller->display();
         } else {
-            require __DIR__ . '/../pages/notFound.php';
+            $controller = new Controller\NotFoundController($articleTable);
+
+            $controller->display();
         }
-    
-        echo ob_get_clean();
     }
 }
